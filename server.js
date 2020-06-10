@@ -31,7 +31,11 @@ router.use(logger("dev"));
 app.set("view engine", "ejs");
 // connects our back end code with the database
 //const conn = mongoose.createConnection(dbRoute);
-mongoose.connect(dbRoute, { useNewUrlParser: true });
+// mongoose.connect(dbRoute, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || dbRoute, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+})
 
 let conn = mongoose.connection;
 let gfs;
@@ -236,4 +240,4 @@ router.post("/login", userController.loginUser);
 app.use("/api", router);
 
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));

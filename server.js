@@ -240,4 +240,5 @@ router.post("/login", userController.loginUser);
 app.use("/api", router);
 
 // launch our backend into a port
-app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(process.env.PORT || 5000, () => console.log(`LISTENING ON PORT ${API_PORT}`));
